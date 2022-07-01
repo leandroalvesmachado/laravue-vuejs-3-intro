@@ -1,7 +1,11 @@
 <template>
-  <TheHeader />
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div>
+    <TheHeader
+      v-show="showHeader"
+    />
+    <img alt="Vue logo" src="./assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App" />
+  </div>
 </template>
 
 <script>
@@ -13,6 +17,11 @@ export default {
   components: {
     HelloWorld,
     TheHeader
+  },
+  data() {
+    return {
+      showHeader: false
+    }
   }
 }
 </script>
