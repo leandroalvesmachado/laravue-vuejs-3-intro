@@ -20,12 +20,81 @@
 
     <br>
     
+    <!-- v-bind indica que vai receber um valor dinamico, variavel -->
     <div
       v-for="(obj, index) in todos"
       v-bind:key="obj.id"
     >
+      <img
+        v-if="obj.imgSrc"
+        :src="obj.imgSrc"
+      >
       {{ index }} - {{ obj.title }}
     </div>
+
+    <h1 :class="classVar">
+      Curso Vue 3
+    </h1>
+
+    <!-- aplica a classe caso seja true -->
+    <h1 :class="{ 'title': true, 'title-home': isHome }">
+      Curso Vue 3
+    </h1>
+
+    <div>
+      <div>
+        Two-way data binding
+      </div>
+      <input v-model="name" type="text">
+      <br>
+      {{ name }}
+      <br>
+      <label for="">Sports</label>
+      <select v-model="sports">
+        <option value="">Escolha</option>
+        <option value="futebol">Futebol</option>
+        <option value="skate">Skate</option>
+      </select>
+      <br>
+      {{ sports }}
+
+      <br>
+      <label for="">Newsletter</label>
+      <input v-model="newsletter" type="radio" value="Sim"> Sim
+      <input v-model="newsletter" type="radio" value="Não"> Não
+      <br>
+      {{ newsletter }}
+    </div>
+
+    <br><br>
+
+        <div>
+            <label>Contrato</label> <br>
+            <input
+                v-model="contract"
+                type="checkbox"
+            > Aceita nosso termos... <br>
+
+              {{ contract }}
+        </div>
+
+        <br><br>
+
+        <div>
+            <label>Cores que você mais gosta</label> <br>
+            <input
+                v-model="colors"
+                type="checkbox"
+                value="Azul"
+            > Azul
+
+            <input
+                v-model="colors"
+                type="checkbox"
+                value="Amarelo"
+            > Amarelo <br>
+              {{ colors }}
+        </div>
 
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App" />
@@ -49,18 +118,27 @@ export default {
       lastName: 'Snow',
       showName: false,
       accessLevel: 'admin',
+      classVar: 'title',
+      isHome: true,
+      name: 'Jon snow',
+      sports: 'futebol',
+      newsletter: '',
+      contract: true,
+      colors: [],
       todos: [
         {
           "userId": 1,
           "id": 1,
           "title": "delectus aut autem",
-          "completed": false
+          "completed": false,
+          "imgSrc": 'https://via.placeholder.com/150',
         },
         {
           "userId": 1,
           "id": 2,
           "title": "quis ut nam facilis et officia qui",
-          "completed": false
+          "completed": false,
+          "imgSrc": 'https://via.placeholder.com/150',
         },
         {
           "userId": 1,
@@ -94,5 +172,15 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.title {
+  font-size: 20px;
+  color: blue;
+}
+
+.title-home {
+  font-size: 40px;
+  color: green;
 }
 </style>
