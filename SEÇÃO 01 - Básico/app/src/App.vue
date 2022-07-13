@@ -41,6 +41,7 @@
       Curso Vue 3
     </h1>
 
+    <!-- Two-way data binding -->
     <div>
       <div>
         Two-way data binding
@@ -68,33 +69,61 @@
 
     <br><br>
 
-        <div>
-            <label>Contrato</label> <br>
-            <input
-                v-model="contract"
-                type="checkbox"
-            > Aceita nosso termos... <br>
+    <div>
+        <label>Contrato</label> <br>
+        <input
+            v-model="contract"
+            type="checkbox"
+        > Aceita nosso termos... <br>
 
-              {{ contract }}
-        </div>
+          {{ contract }}
+    </div>
 
-        <br><br>
+    <br><br>
 
-        <div>
-            <label>Cores que você mais gosta</label> <br>
-            <input
-                v-model="colors"
-                type="checkbox"
-                value="Azul"
-            > Azul
+    <div>
+        <label>Cores que você mais gosta</label> <br>
+        <input
+            v-model="colors"
+            type="checkbox"
+            value="Azul"
+        > Azul
 
-            <input
-                v-model="colors"
-                type="checkbox"
-                value="Amarelo"
-            > Amarelo <br>
-              {{ colors }}
-        </div>
+        <input
+            v-model="colors"
+            type="checkbox"
+            value="Amarelo"
+        > Amarelo <br>
+          {{ colors }}
+    </div>
+
+    <br><br>
+    <!-- Eventos -->
+
+    <div>
+      <!-- v-on = capture o evento que for definido -->
+      <!-- v-on:click = capturando o evento click do botão -->
+      <!-- v-on = @ forma reduzida -->
+      <button v-on:click="onClick">Enviar</button>
+      <button @click="onClick()">Enviar</button>
+    </div>
+
+    <div @mouseover="onMouseOver()">MouseOver</div>
+
+    <!-- modificadores de eventos = @submit.prevent, altera o comportamento padrão -->
+    <!-- @keyup.enter = evento acionado quando a tecla enter é presionada -->
+    <form
+      action="https://google.com"
+      @submit.prevent="onSubmit"
+    >
+      <input
+        type="text"
+        @keyup.enter="onKeyUp"
+      >
+      <button type="submit">
+        Enviar
+      </button>
+    </form>
 
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App" />
@@ -159,6 +188,21 @@ export default {
           "completed": false
         },
       ]
+    }
+  },
+  methods: {
+    onClick($evt) {
+      // $evt = evento
+      console.log('click', $evt);
+    },
+    onMouseOver() {
+      console.log('onMouseOver');
+    },
+    onSubmit($evt) {
+      console.log('submit', $evt);
+    },
+    onKeyUp($evt) {
+      console.log('onKeyUp', $evt);
     }
   }
 }
